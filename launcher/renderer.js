@@ -760,8 +760,6 @@ document.body.addEventListener('mouseenter', (e) => {
     }
 }, true); // Capture phase
 
-});
-
 // --- AUTO-UPDATE UI LOGIC ---
 const updateBanner = document.getElementById('update-banner');
 const updateText = document.getElementById('update-text');
