@@ -246,7 +246,7 @@ if(tabLogin && tabRegister) {
 }
 
 if(authForm) {
-    authForm.addEventListener('submit', async (e) => {
+    authForm.addEventListener('submit', (e) => {
         e.preventDefault();
         authError.textContent = '';
         authSuccess.textContent = '';
@@ -255,27 +255,41 @@ if(authForm) {
         const password = document.getElementById('auth-password').value;
         const email = document.getElementById('auth-email').value;
 
-        const apiOrigin = window.location.origin;
-        const endpoint = isLoginMode ? `${apiOrigin}/api/login` : `${apiOrigin}/api/register`;
-        const payload = isLoginMode ? { username, password } : { username, email, password };
+        // LOCAL STORAGE AUTH SYSTEM (Removing MongoDB dependency)
+        let localUsers = JSON.parse(localStorage.getItem('zypher_users_db') || '[]');
 
-        try {
-            const res = await fetch(endpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            
-            if(data.success) {
-                authSuccess.textContent = isLoginMode ? 'Giriş başarılı! Yönlendiriliyor...' : 'Kayıt başarılı! Kurucu Pelerini hediyeniz tanımlandı.';
-                localStorage.setItem('zypher_user', JSON.stringify(data.user));
+        if (isLoginMode) {
+            // Login Logic
+            const user = localUsers.find(u => u.username === username && u.password === password);
+            if (user) {
+                authSuccess.textContent = 'Giriş başarılı! Yönlendiriliyor...';
+                localStorage.setItem('zypher_user', JSON.stringify({ username: user.username, isFounder: user.isFounder }));
                 setTimeout(() => window.location.reload(), 1500);
             } else {
-                authError.textContent = data.message;
+                authError.textContent = 'Hatalı kullanıcı adı veya şifre!';
             }
-        } catch (err) {
-            authError.textContent = 'Sunucuya bağlanılamadı! Lütfen "node server.js" çalıştığından emin olun.';
+        } else {
+            // Register Logic
+            const existing = localUsers.find(u => u.username === username || u.email === email);
+            if (existing) {
+                authError.textContent = 'Bu kullanıcı adı veya e-posta zaten kullanımda!';
+                return;
+            }
+
+            const newUser = {
+                username,
+                email,
+                password,
+                isFounder: true,
+                createdAt: new Date().toISOString()
+            };
+
+            localUsers.push(newUser);
+            localStorage.setItem('zypher_users_db', JSON.stringify(localUsers));
+            
+            authSuccess.textContent = 'Kayıt başarılı! Kurucu Pelerini hediyeniz tanımlandı.';
+            localStorage.setItem('zypher_user', JSON.stringify({ username: newUser.username, isFounder: true }));
+            setTimeout(() => window.location.reload(), 1500);
         }
     });
 }
