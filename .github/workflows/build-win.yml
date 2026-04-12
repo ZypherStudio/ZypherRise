@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ZypherRise-Windows-EXE
-          path: launcher/dist/*.exe
+          path: dist/*.exe
