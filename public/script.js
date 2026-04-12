@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Default hero button entirely to Windows globally as per request
     if(heroBtn) {
         heroBtn.textContent = "Windows İçin İndir (.exe)";
-        heroBtn.href = "https://github.com/ZypherStudio/ZypherRise/releases/latest/download/ZypherRise.Setup.1.1.0.exe";
+        heroBtn.href = "https://github.com/ZypherStudio/ZypherRise/releases/latest/download/ZypherRise.Setup.1.1.1.exe";
     }
 
     // Downloads are now handled by <a> tags with href and download attributes
