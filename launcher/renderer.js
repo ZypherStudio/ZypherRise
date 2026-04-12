@@ -373,6 +373,16 @@ window.addEventListener('click', (e) => { if(e.target === zypherModal) zypherMod
 
 // Zypher Network Login
 let zypherTokenData = null;
+zypherLoginBtn.addEventListener('click', async () => {
+    const loginUsername = usernameInput.value.trim();
+    if (!loginUsername) {
+        zypherAuthMsg.textContent = 'Kullanıcı adı gerekli!';
+        zypherAuthMsg.style.color = "#ef4444";
+        return;
+    }
+    
+    zypherLoginBtn.textContent = 'Bağlanıyor...';
+
     // LOCAL AUTH SYSTEM (Removing MongoDB dependency)
     try {
         let localUsers = JSON.parse(localStorage.getItem('zypher_users_db') || '[]');
