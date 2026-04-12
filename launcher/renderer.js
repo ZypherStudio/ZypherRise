@@ -420,7 +420,6 @@ let zypherTokenData = null;
         zypherAuthMsg.textContent = 'Yerel oturum açılamadı!';
         zypherAuthMsg.style.color = "#ef4444";
     }
-    }
     zypherLoginBtn.textContent = 'Ağa Bağlan';
 });
 
