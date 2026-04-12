@@ -10,9 +10,6 @@ module.exports = async (req, res) => {
     }
 
     const db = await connectToDatabase();
-    if (!db) {
-        return res.status(500).json({ success: false, message: 'Veritabanı bağlantısı yapılamadı! (Lütfen MONGODB_URI ayarını Vercel\'den yapın)' });
-    }
     const users = db.collection('users');
 
     // Check existing

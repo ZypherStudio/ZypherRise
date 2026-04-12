@@ -27,7 +27,7 @@ async function connectToDatabase() {
       return db;
   } catch (err) {
       console.error("MongoDB Connection Error:", err.message);
-      return null;
+      throw new Error("MongoDB Hatası: " + err.message);
   }
 }
 
