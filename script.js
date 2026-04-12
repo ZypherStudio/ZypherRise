@@ -94,6 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- 7. AUTO-UPDATE SITE BANNER --- //
+    const betaBannerSpan = document.querySelector('.beta-banner span');
+    async function checkLatestRelease() {
+        try {
+            const res = await fetch('https://api.github.com/repos/ZypherStudio/ZypherRise/releases/latest');
+            const data = await res.json();
+            if(data && data.tag_name) {
+                if(betaBannerSpan) {
+                    betaBannerSpan.innerHTML = `En Güncel Sürüm Yayında: <strong style="color:var(--accent); cursor:pointer;" onclick="document.getElementById('download').scrollIntoView({behavior:'smooth'})">${data.tag_name}</strong> - Tıkla ve İndir!`;
+                }
+            }
+        } catch(e) {
+            console.warn("Could not fetch latest release for banner");
+        }
+    }
+    checkLatestRelease();
+
 });
 
 // --- 5. I18N DICTIONARY & LOGIC --- //
