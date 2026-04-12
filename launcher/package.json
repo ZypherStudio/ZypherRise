@@ -1,7 +1,7 @@
 {
   "name": "zypherrise-launcher",
   "productName": "ZypherRise",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "ZypherRise | Next-Gen Minecraft Experience",
   "main": "main.js",
   "scripts": {

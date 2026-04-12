@@ -625,7 +625,8 @@ playBtn.addEventListener('click', async () => {
     });
 
     if (!result.success) {
-        alert('Başlatma hatası: ' + result.error);
+        let errorMsg = result.error || 'Bilinmeyen bir hata oluştu.';
+        alert('❌ Başlatma Hatası!\n\nDetay: ' + errorMsg + '\n\nÖneri: Eğer bu sürüm açılmıyorsa "Ayarlar" sekmesinden Java yolunu kontrol edin veya RAM miktarını değiştirmeyi deneyin. Bazı sürümler özel Java kurulumu gerektirebilir.');
         playBtn.disabled = false;
         playBtn.textContent = 'OYNA';
         progressContainer.style.display = 'none';
