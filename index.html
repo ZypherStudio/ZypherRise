@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZypherRise | Yeni Nesil Minecraft Deneyimi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Original OS Logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/logo.png" alt="ZypherRise Logo" class="nav-logo">
+            Zypher<span>Rise</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Özellikler</a>
+            <a href="#showcase">Temalar</a>
+            <a href="#faq">S.S.S</a>
+            <a href="#download">İndir</a>
+            <select id="lang-select" class="lang-select">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+            </select>
+            <a href="#" id="nav-auth-btn" class="btn-discord"><i class="fa-solid fa-user-plus"></i> Zypher Network</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="beta-banner">
+            <i class="fa-solid fa-triangle-exclamation"></i> <strong>Haberler:</strong> ZypherRise Launcher şu an <span>Geliştirme Aşamasındadır.</span>
+        </div>
+        <div class="hero-content fade-in-up">
+            <div class="badge"><i class="fa-solid fa-rocket"></i> V3 Güncellemesi Yayında!</div>
+            <h1>Oyunun Kontrolünü <br><span>Eline Al.</span></h1>
+            <p>Sınırları aşan optimizasyon, tek tıkla mod kurulumu ve 3D özel skin laboratuvarı. ZypherRise ile Minecraft deneyimini maksimize et.</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn-primary" id="hero-download-btn">İndir (Otomatik)</a>
+                <a href="#features" class="btn-secondary">Daha Fazla Bilgi</a>
+            </div>
+            <div class="os-icons">
+                <span title="Windows Destekli"><i class="fa-brands fa-windows"></i> Windows</span>
+                <span title="macOS Destekli"><i class="fa-brands fa-apple"></i> macOS</span>
+                <span title="Linux Destekli"><i class="fa-brands fa-linux"></i> Linux</span>
+            </div>
+        </div>
+        <div class="hero-image fade-in-up delay-1">
+            <div class="mockup-frame">
+                <div class="mockup-header">
+                    <span>ZypherRise Launcher v3.0</span>
+                </div>
+                <div class="mockup-sidebar"></div>
+                <div class="mockup-body">
+                    <h2>Maceraya Hazır Mısın?</h2>
+                    <button class="mockup-btn">OYNA</button>
+                    <div class="mockup-stats">
+                        <div class="stat-bar" style="width: 70%;"></div>
+                        <div class="stat-bar" style="width: 40%; background:var(--accent)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- NEW: Infinite Marquee Banner (Popüler Modlar) -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span><i class="fa-solid fa-cube"></i> Sodium</span>
+            <span><i class="fa-solid fa-eye"></i> OptiFine</span>
+            <span><i class="fa-solid fa-bolt"></i> Lithium</span>
+            <span><i class="fa-solid fa-droplet"></i> Iris Shaders</span>
+            <span><i class="fa-solid fa-book"></i> JEI</span>
+            <span><i class="fa-solid fa-gear"></i> Fabric API</span>
+            <!-- Duplicate for seamless loop -->
+            <span aria-hidden="true"><i class="fa-solid fa-cube"></i> Sodium</span>
+            <span aria-hidden="true"><i class="fa-solid fa-eye"></i> OptiFine</span>
+            <span aria-hidden="true"><i class="fa-solid fa-bolt"></i> Lithium</span>
+            <span aria-hidden="true"><i class="fa-solid fa-droplet"></i> Iris Shaders</span>
+            <span aria-hidden="true"><i class="fa-solid fa-book"></i> JEI</span>
+            <span aria-hidden="true"><i class="fa-solid fa-gear"></i> Fabric API</span>
+        </div>
+    </div>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="stat-item reveal">
+            <h3>15K+</h3>
+            <p>Aktif Oyuncu</p>
+        </div>
+        <div class="stat-item reveal delay-1">
+            <h3>500+</h3>
+            <p>Desteklenen Mod</p>
+        </div>
+        <div class="stat-item reveal delay-2">
+            <h3>%99.9</h3>
+            <p>Sunucu Uptime</p>
+        </div>
+        <div class="stat-item reveal delay-3">
+            <h3>%300</h3>
+            <p>FPS Artışı</p>
+        </div>
+    </div>
+
+    <!-- Showcase Section (Themes redesigned into grid of cards) -->
+    <section class="showcase" id="showcase">
+        <div class="showcase-content">
+            <div class="showcase-text reveal">
+                <h2>Senin Tarzın, Senin Kuralların</h2>
+                <p>ZypherRise, dünyanın en gelişmiş tema motoruna sahiptir. Canın sıkıldığında uygulamayı kapatmana veya yeniden başlatmana gerek kalmaz. Tema kartlarına tıkla ve anında geçiş yap.</p>
+                <ul class="check-list">
+                    <li><i class="fa-solid fa-check text-primary"></i> Canlı CSS Entegrasyonu</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> Karanlık ve Neon Seçenekleri</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> Göz Yormayan UI Tasarımı</li>
+                </ul>
+            </div>
+            <div class="showcase-cards reveal delay-1">
+                <!-- Theme Card 1 -->
+                <div class="tc-card dark-vibe">
+                    <div class="tc-color" style="background:#0f172a; border-top: 3px solid #3b82f6;"></div>
+                    <div class="tc-info">
+                        <h4>Lunar Dark</h4>
+                        <p>Orijinal Gece Teması</p>
+                    </div>
+                </div>
+                <!-- Theme Card 2 -->
+                <div class="tc-card sakura-vibe">
+                    <div class="tc-color" style="background:#1a101b; border-top: 3px solid #fb7185;"></div>
+                    <div class="tc-info">
+                        <h4>Sakura Cherry</h4>
+                        <p>Pembe Tonlarına Hakim</p>
+                    </div>
+                </div>
+                <!-- Theme Card 3 -->
+                <div class="tc-card cyberpunk-vibe">
+                    <div class="tc-color" style="background:#0d0208; border-top: 3px solid #fce700;"></div>
+                    <div class="tc-info">
+                        <h4>Cyberpunk</h4>
+                        <p>Neon Sarı ve Karanlık</p>
+                    </div>
+                </div>
+                <!-- Theme Card 4 -->
+                <div class="tc-card purple-vibe">
+                    <div class="tc-color" style="background:#0c0a0f; border-top: 3px solid #8b5cf6;"></div>
+                    <div class="tc-info">
+                        <h4>Zypher Purple</h4>
+                        <p>Kraliyet Mor Tonları</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-title reveal">
+            <h2>Sınırları Zorlayan Özellikler</h2>
+            <p>Standart başlatıcıları unutun, ZypherRise tam donanımlı gelir.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>Oto FPS Boost</h3>
+                <p>Lunar/Badlion seviyesi özel Java (JVM) Argüman parametreleri ile anlık takılmalara (drop) son. Oyun motorundan son damlasına kadar faydalan.</p>
+            </div>
+            <div class="feature-card reveal delay-1">
+                <div class="icon"><i class="fa-solid fa-flask"></i></div>
+                <h3>Karakter Laboratuvarı</h3>
+                <p>Klasörlerde dosya karıştırmaya son. 3 Boyutlu WebGL arayüzünde karakterinin yürüdüğünü anlık izleyerek Skin veya Pelerin yükle.</p>
+            </div>
+            <div class="feature-card reveal delay-2">
+                <div class="icon"><i class="fa-solid fa-box-open"></i></div>
+                <h3>Modrinth Entegrasyonu</h3>
+                <p>Sadece ismini arat ve "Kur" tuşuna bas. Launcher arkaplanda Modrinth API üzerinden .jar dosyasını kendisi kurar.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="icon"><i class="fa-solid fa-gears"></i></div>
+                <h3>Sürüm Merkezi</h3>
+                <p>Vanilla, Forge ve Fabric profillerini kolayca oluştur. Birbiriyle çakışmayan izole profil sistemiyle özgürlüğü tat.</p>
+            </div>
+            <div class="feature-card reveal delay-1">
+                <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Premium / Offline</h3>
+                <p>İster orijinal Microsoft (Xbox) hesabınla giriş yap, ister Offline hesabla direkt sunuculara (Crack Destekli) süzül.</p>
+            </div>
+            <div class="feature-card reveal delay-2">
+                <div class="icon"><i class="fa-solid fa-music"></i></div>
+                <h3>Audio Context Arayüz</h3>
+                <p>Menüde gezinirken dinamik sentetik sesler (Hover ve Click sound) veren muazzam akıcı bir UI kodlaması.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dedicated Download Section -->
+    <section class="download" id="download">
+        <div class="section-title reveal">
+            <h2>İşletim Sistemini Seç</h2>
+            <p>Senin için en uygun kurulum dosyasını veya taşınabilir sürümü indir.</p>
+            <!-- Auto detection message -->
+            <div class="os-detect">
+                <p>Mevcut Cihazınız: <span id="detected-os" style="color: var(--primary); font-weight:bold;">Algılanıyor...</span></p>
+            </div>
+        </div>
+
+        <div class="download-cards">
+            <!-- Windows Card -->
+            <div class="dl-card reveal delay-1">
+                <div class="dl-icon"><i class="fa-brands fa-windows" style="color:#00bdff;"></i></div>
+                <h3>Windows</h3>
+                <p>Windows 10 ve 11 için optimize edilmiştir.</p>
+                <div class="dl-specs">64-bit / .exe Installer</div>
+                <a href="downloads/ZypherRise_Setup.exe" download class="btn-giant win-btn" style="display:block; text-decoration:none;">Windows İçin İndir</a>
+            </div>
+
+            <!-- Custom Focus Card (Auto Selected) -->
+            <div class="dl-card highlight reveal delay-2" id="auto-dl-card">
+                <div class="badge"><i class="fa-solid fa-fire"></i> Önerilen</div>
+                <div class="dl-icon"><i class="fa-brands fa-apple" style="color:#fff;"></i></div>
+                <h3>macOS</h3>
+                <p>Apple Silicon (M1/M2) ve Intel için.</p>
+                <div class="dl-specs">Universal / .dmg</div>
+                <a href="downloads/ZypherRise.dmg" download class="btn-giant mac-btn" id="main-download-btn" style="display:block; text-decoration:none;">Mac İçin İndir</a>
+            </div>
+
+            <!-- Linux Card -->
+            <div class="dl-card reveal delay-3">
+                <div class="dl-icon"><i class="fa-brands fa-linux" style="color:#fbbf24;"></i></div>
+                <h3>Linux</h3>
+                <p>Tüm dağıtımlar için taşınabilir versiyon.</p>
+                <div class="dl-specs">x86_64 / .AppImage</div>
+                <a href="downloads/ZypherRise.AppImage" download class="btn-giant lin-btn" style="display:block; text-decoration:none;">Linux İçin İndir</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-title reveal">
+            <h2>Sıkça Sorulan Sorular</h2>
+            <p>Aklınıza takılan soruların cevapları.</p>
+        </div>
+        <div class="faq-container reveal">
+            <div class="faq-item">
+                <div class="faq-question">ZypherRise tamamen ücretsiz mi? <span><i class="fa-solid fa-plus"></i></span></div>
+                <div class="faq-answer">
+                    <p>Evet, ZypherRise açık kaynak prensipleriyle üretilmiş ve tamamen ücretsiz, reklamsız bir projedir.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Orijinal Minecraft hesabı (Premium) gerekli mi? <span><i class="fa-solid fa-plus"></i></span></div>
+                <div class="faq-answer">
+                    <p>Hayır, ZypherRise hem Microsoft Login (Orijinal) hem de Çevrimdışı (Offline) hesap destekler.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">FPS Boost zararlı mıdır? <span><i class="fa-solid fa-plus"></i></span></div>
+                <div class="faq-answer">
+                    <p>Hayır, yalnızca arka plandaki Java çöp toplayıcısını (Garbage Collector) optimize eden sunucu taraflı Java (JVM) Argümanlarını aktif eder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="Logo" class="nav-logo footer-logo-img">
+                Zypher<span>Rise</span>
+            </div>
+            <p>Yeni Nesil Minecraft Launcher Deneyimi. © 2026 Tüm Hakları Saklıdır.</p>
+            <div class="socials">
+                <a href="#"><i class="fa-brands fa-discord"></i> Discord</a>
+                <a href="#"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+        <div class="credits">Yapımcı ve Kurucu: Zypher Studio</div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-auth-modal">&times;</span>
+            <div class="modal-header">
+                <img src="assets/logo.png" alt="Logo" width="40" style="border-radius: 8px;">
+                <h2>Zypher Network</h2>
+            </div>
+            <p>Küresel ağımıza katılın ve <strong style="color:var(--primary);">Kurucu Pelerinini</strong> kapın!</p>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tab-login">Giriş Yap</button>
+                <button class="auth-tab" id="tab-register">Kayıt Ol</button>
+            </div>
+            
+            <form id="auth-form">
+                <input type="text" id="auth-username" placeholder="Kullanıcı Adı" required>
+                <input type="email" id="auth-email" placeholder="E-Posta Adresi" style="display:none;">
+                <input type="password" id="auth-password" placeholder="Şifre" required>
+                <button type="submit" class="btn-primary" style="width:100%; padding: 12px; margin-top:15px; font-size:16px;">Devam Et</button>
+                <p id="auth-error" style="color:#ef4444; font-size:14px; margin-top:10px; text-align:center;"></p>
+                <p id="auth-success" style="color:#10b981; font-size:14px; margin-top:10px; text-align:center;"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

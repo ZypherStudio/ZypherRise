@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZypherRise</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-theme="dark">
+    <div class="title-bar">
+        <div class="drag-region"></div>
+        <div class="window-controls">
+            <button id="minimize-btn" class="control-btn minimize">_</button>
+            <button id="close-btn" class="control-btn close">X</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Update Banner -->
+        <div id="update-banner" class="update-banner" style="display: none;">
+            <div class="update-info">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span id="update-header" style="color:var(--primary); font-family:var(--font-heading); font-weight:800; margin-right:5px;">Zypher-updater:</span>
+                <span id="update-text">Yeni güncelleme indiriliyor...</span>
+            </div>
+            <div class="update-progress-container">
+                <div id="update-progress-bar" class="update-progress-bar"></div>
+            </div>
+            <button id="restart-btn" class="restart-btn" style="display: none;">Yeniden Başlat ve Kur</button>
+        </div>
+
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="assets/logo.png" alt="ZypherRise" class="launcher-logo">
+                <h1>Zypher<span>Rise</span></h1>
+            </div>
+            <nav id="nav-container">
+                <button class="nav-item active" data-target="view-play">Oyna</button>
+                <button class="nav-item" data-target="view-profile">Profil & Skin</button>
+                <button class="nav-item" data-target="view-versions">Sürümler Merkezi</button>
+                <button class="nav-item" data-target="view-servers">Canlı Sunucular</button>
+                <button class="nav-item" data-target="view-mods">Gelişmiş Modlar</button>
+                <button class="nav-item" data-target="view-themes">Temalar</button>
+                <button class="nav-item" data-target="view-settings">Ayarlar</button>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar-row">
+                    <div class="avatar">
+                        <img src="https://minotar.net/helm/Player1/40" alt="Avatar" id="player-avatar" style="image-rendering: pixelated;">
+                    </div>
+                    <div class="user-info">
+                        <input type="text" id="username-input" placeholder="Oyuncu Adı" value="Player1">
+                        <select id="auth-select" class="account-type-select">
+                            <option value="offline">Offline (Crack)</option>
+                            <option value="zypher">Zypher Network (Kurucu)</option>
+                            <option value="microsoft">Microsoft (Premium)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="auth-status-container" style="display:none; flex-direction:column; gap:5px; margin-top:5px;">
+                    <span id="founder-badge"><i class="fa-solid fa-star"></i> Kurucu Üye</span>
+                    <span id="cape-badge" style="color:var(--primary); font-size:10px; font-weight:bold; text-align:center; background:rgba(59,130,246,0.1); padding:3px; border-radius:4px; border:1px solid var(--primary);"><i class="fa-solid fa-vest"></i> Pelerin Aktif</span>
+                    <button id="sign-out-btn" class="ms-btn" style="background:#ef4444; margin-top:5px;"><i class="fa-solid fa-right-from-bracket"></i> Hesaptan Çık</button>
+                </div>
+                <button id="ms-login-btn" class="ms-btn" style="display: none;">Microsoft ile Giriş Yap</button>
+                <button id="zypher-connect-btn" class="ms-btn" style="display: none; background: var(--accent);"><i class="fa-solid fa-network-wired"></i> Ağa Bağlan</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <!-- Oyun Sekmesi -->
+            <div id="view-play" class="view-section active">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2>Limitsiz Deneyim.</h2>
+                        <p>ZypherRise ile Minecraft'ın sınırlarını zorla.</p>
+                    </div>
+                </div>
+
+                <div class="launch-section">
+                    <div class="version-selector">
+                        <label for="version-select">Aktif Profil (Sürüm):</label>
+                        <select id="version-select">
+                            <option value="1.20.4">Vanilla 1.20.4</option>
+                        </select>
+                    </div>
+                    <button id="play-btn" class="btn-primary">OYNA</button>
+                </div>
+
+                <div class="progress-container" id="progress-container" style="display: none;">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                    <p id="progress-text">Hazırlanıyor... %0</p>
+                </div>
+
+                <div class="news-feed-container" style="margin-top: 20px;">
+                    <h3 style="font-size: 16px; color: var(--text-muted); margin-bottom: 10px;">📢 Zypher Ağından Haberler</h3>
+                    <div class="news-slider">
+                        <div class="news-card">
+                            <h4>🔥 ZypherRise V4 Yayında!</h4>
+                            <p>Artık sunucuların anlık oyuncu sayısını görebilir, tek tıkla ağa katılabilirsiniz.</p>
+                        </div>
+                        <div class="news-card">
+                            <h4>📦 Haftanın Modu: Sodium</h4>
+                            <p>Mod kütüphanesinden tek tıkla kurarak %300 oyun içi performans artışı sağlayın.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profil Sekmesi -->
+            <div id="view-profile" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Karakter Laboratuvarı</h2>
+                    <p class="subtitle">Skinini yükle, 3D önizle ve Zypher Pelerini kuşan.</p>
+                </div>
+                <div class="profile-layout">
+                    <!-- Sol: 3D Viewer -->
+                    <div class="canvas-wrapper">
+                        <div class="canvas-label">3D Önizleme</div>
+                        <canvas id="skin_container" width="220" height="300"></canvas>
+                        <div class="canvas-controls">
+                            <button id="walk-toggle" class="walk-btn">
+                                <i class="fa-solid fa-person-walking"></i> Yürüt / Durdur
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sağ: Araçlar -->
+                    <div class="profile-tools">
+                        <div class="settings-card">
+                            <h3><i class="fa-solid fa-image" style="color:var(--primary); margin-right:8px;"></i>Skin Yükle (.png)</h3>
+                            <p class="small-text" style="margin: 8px 0 12px;">Sadece yerel bilgisayarınızda görünür.</p>
+                            <div style="display:flex; gap:10px; align-items:center;">
+                                <label for="skin-upload" class="btn-upload" style="flex:1;">
+                                    <i class="fa-solid fa-upload"></i> Bilgisayardan Seç
+                                </label>
+                                <button id="apply-skin-btn" class="btn-primary" style="padding: 10px 20px; font-size: 14px; flex:1;">
+                                    <i class="fa-solid fa-floppy-disk"></i> Kaydet ve Uygula
+                                </button>
+                            </div>
+                            <input type="file" id="skin-upload" accept="image/png" style="display: none;">
+                            <div class="skin-filename-box">
+                                <i class="fa-solid fa-file-image"></i>
+                                <span id="selected-skin-name">Hiçbir dosya seçilmedi</span>
+                            </div>
+                        </div>
+
+                        <div class="settings-card" style="margin-top: 16px;">
+                            <h3><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent); margin-right:8px;"></i>Zypher Özel Kozmetikler</h3>
+                            <p class="small-text" style="margin: 8px 0 12px;">Kurucu üyelere özel görsel ayrıcalıklar.</p>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="zypher-cape">
+                                <span class="checkmark"></span>
+                                Zypher Kurucu Pelerini Aktif Et
+                            </label>
+                        </div>
+
+                        <div class="settings-card" style="margin-top: 16px;">
+                            <h3><i class="fa-solid fa-circle-info" style="color:var(--text-muted); margin-right:8px;"></i>Skin Bilgisi</h3>
+                            <p class="small-text" style="margin-top:8px;">Model: <strong style="color:var(--text-main);">Steve (Klasik)</strong></p>
+                            <p class="small-text" style="margin-top:4px;">Boyut: <strong style="color:var(--text-main);">64x64 px</strong></p>
+                            <p class="small-text" style="margin-top:4px;">Format: <strong style="color:var(--text-main);">PNG</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sürümler Merkezi Sekmesi (NEW V3) -->
+            <div id="view-versions" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Sürüm Laboratuvarı</h2>
+                    <p class="subtitle">Dünya üzerindeki tüm Minecraft sürümlerinden kendi profilini yarat.</p>
+                </div>
+                <div class="settings-card" style="display: flex; gap: 10px;">
+                    <select id="v-type" class="filter-select">
+                        <option value="vanilla">Vanilla</option>
+                        <option value="forge">Forge</option>
+                        <option value="fabric">Fabric</option>
+                    </select>
+                    <select id="v-number" class="filter-select">
+                        <option>Yükleniyor...</option>
+                    </select>
+                    <button id="create-profile-btn" class="btn-secondary">Yeni Profil Ekle</button>
+                </div>
+                <div class="versions-grid" id="versions-grid" style="margin-top: 20px;">
+                    <div class="version-card">
+                        <h3>Vanilla 1.20.4</h3>
+                        <p>Orijinal Sürüm</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canlı Sunucular Sekmesi (NEW V4) -->
+            <div id="view-servers" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Sunucu Ağları (Live)</h2>
+                    <p class="subtitle">Anlık oyuncu durumlarını izle ve dilediğine tek tıkla katıl.</p>
+                </div>
+                <div id="server-list" class="servers-grid" style="margin-top: 10px;">
+                    <p>Ağ verileri çekiliyor...</p>
+                </div>
+            </div>
+
+            <!-- Gelişmiş Modlar Sekmesi -->
+            <div id="view-mods" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Mod Kütüphanesi</h2>
+                    <div class="mod-search-bar">
+                        <input type="text" id="mod-search-input" placeholder="Sodium, Optifine, JEI, Journey Map...">
+                        <select id="mod-category" class="filter-select" style="width: auto;">
+                            <option value="">Tümü</option>
+                            <option value="optimization">Optimizasyon</option>
+                            <option value="magic">Sihir & Büyü</option>
+                            <option value="technology">Teknoloji</option>
+                            <option value="pvp">PvP</option>
+                            <option value="adventure">Macera</option>
+                            <option value="utility">Arayüz & Araçlar</option>
+                            <option value="storage">Depolama</option>
+                            <option value="food">Yiyecek</option>
+                        </select>
+                        <button id="mod-search-btn" class="btn-secondary">Ara</button>
+                    </div>
+                    <div class="version-pills" style="margin-top: 12px;">
+                        <button class="version-pill active" data-version="">Tüm Sürümler</button>
+                        <button class="version-pill" data-version="1.21">1.21</button>
+                        <button class="version-pill" data-version="1.20.4">1.20.4</button>
+                        <button class="version-pill" data-version="1.20.1">1.20.1</button>
+                        <button class="version-pill" data-version="1.19.4">1.19.4</button>
+                        <button class="version-pill" data-version="1.18.2">1.18.2</button>
+                        <button class="version-pill" data-version="1.16.5">1.16.5</button>
+                        <button class="version-pill" data-version="1.12.2">1.12.2</button>
+                        <button class="version-pill" data-version="1.8.9">1.8.9</button>
+                    </div>
+                </div>
+                <div id="mods-list" class="mods-grid">
+                    <p>Yükleniyor...</p>
+                </div>
+            </div>
+
+            <!-- Temalar Sekmesi -->
+            <div id="view-themes" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Özel Temalar</h2>
+                    <p class="subtitle">10 benzersiz tema arasından Launcher'ını kişiselleştir. Anında geçiş yap.</p>
+                </div>
+                <div class="themes-grid">
+                    <div class="theme-card active" data-theme="dark">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #1e1b4b, #0f172a); border-color: #3b82f6;"></div>
+                        <div class="theme-badge">Orijinal</div>
+                        <h3>Lunar Dark</h3>
+                    </div>
+                    <div class="theme-card" data-theme="purple">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #2e1065, #0c0a0f); border-color: #8b5cf6;"></div>
+                        <div class="theme-badge">Neon</div>
+                        <h3>Zypher Purple</h3>
+                    </div>
+                    <div class="theme-card" data-theme="cyberpunk">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #1f0111, #0d0208); border-color: #fce700;"></div>
+                        <div class="theme-badge">Futuristik</div>
+                        <h3>Cyberpunk 2099</h3>
+                    </div>
+                    <div class="theme-card" data-theme="cherry">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #4c264a, #1a101b); border-color: #fb7185;"></div>
+                        <div class="theme-badge">Romantik</div>
+                        <h3>Sakura Cherry</h3>
+                    </div>
+                    <div class="theme-card" data-theme="ocean">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #0c3870, #051831); border-color: #06b6d4;"></div>
+                        <div class="theme-badge">Dünya</div>
+                        <h3>Deep Ocean</h3>
+                    </div>
+                    <div class="theme-card" data-theme="forest">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #14432a, #071a0e); border-color: #22c55e;"></div>
+                        <div class="theme-badge">Doğa</div>
+                        <h3>Emerald Forest</h3>
+                    </div>
+                    <div class="theme-card" data-theme="fire">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #7c2d12, #0f0500); border-color: #f97316;"></div>
+                        <div class="theme-badge">Agresif</div>
+                        <h3>Hellfire</h3>
+                    </div>
+                    <div class="theme-card" data-theme="midnight">
+                        <div class="color-preview" style="background: linear-gradient(135deg, #1a0a2e, #000000); border-color: #a78bfa;"></div>
+                        <div class="theme-badge">Premium</div>
+                        <h3>Midnight Galaxy</h3>
+                    </div>
+                    <div class="theme-card" data-theme="sunrise">
+                        <div class="color-preview" style="background: linear-gradient(160deg, #7c2d70, #c2410c, #1a0a20); border-color: #f472b6;"></div>
+                        <div class="theme-badge">Gündoğumu</div>
+                        <h3>Synthwave Sunrise</h3>
+                    </div>
+                    <div class="theme-card" data-theme="matrix">
+                        <div class="color-preview" style="background: linear-gradient(180deg, #011100, #000000); border-color: #00ff41;"></div>
+                        <div class="theme-badge">Hızlı</div>
+                        <h3>Matrix Code</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ayarlar Sekmesi -->
+            <div id="view-settings" class="view-section" style="display: none;">
+                <div class="view-header">
+                    <h2>Gelişmiş Ayarlar</h2>
+                </div>
+                <div class="settings-card">
+                    <div class="setting-group">
+                        <label for="ram-select">Maksimum RAM:</label>
+                        <select id="ram-select">
+                            <option value="2G">2 GB (Düşük)</option>
+                            <option value="4G" selected>4 GB (Orijinal)</option>
+                            <option value="6G">6 GB (Modlu)</option>
+                            <option value="8G">8 GB (Rekabetçi)</option>
+                            <option value="12G">12 GB (Yaratık)</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="fps-boost">
+                            <span class="checkmark"></span>
+                            Oto FPS Boost (Özel JVM Argümanları Uygula)
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="auto-join">
+                            <span class="checkmark"></span>
+                            Açılışta Otomatik Sunucuya Katıl (play.zypherrise.com)
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label for="java-path">Özel Java Klasörü (Boş Bırakılabilir):</label>
+                        <input type="text" id="java-path" placeholder="C:\\Java\\bin\\java.exe">
+                    </div>
+                    <div class="setting-group">
+                        <label for="lang-select">Uygulama Dili (Language):</label>
+                        <select id="lang-select">
+                            <option value="tr">Türkçe (TR)</option>
+                            <option value="en">English (EN)</option>
+                        </select>
+                    </div>
+                    <div class="setting-group" id="ram-suggestion-box">
+                        <p style="color:var(--accent); font-size:12px;">Sistem RAM'i Taranıyor...</p>
+                    </div>
+                    <button id="save-settings-btn" class="btn-secondary">Değişiklikleri Kaydet</button>
+                    <p id="settings-status" style="color: var(--accent); margin-top: 10px;"></p>
+                </div>
+
+                <div class="settings-card" style="margin-top: 20px;">
+                    <h3>Hakkında</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">Yapımcı ve Kurucu: Zypher Studio</p>
+                    <div style="display:flex; gap: 15px; font-size: 20px;">
+                        <a href="#" style="color: #ef4444;"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" style="color: white;"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" style="color: #f472b6;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Zypher Network Auth Modal -->
+    <div id="zypher-modal" class="modal">
+        <div class="modal-content" style="max-width:400px;">
+            <span class="close-modal" id="close-zypher-modal">&times;</span>
+            <div class="modal-header">
+                <img src="assets/logo.png" alt="Logo" width="36" style="border-radius:8px;">
+                <h2 style="font-size:20px;">Zypher Network</h2>
+            </div>
+            <p style="margin-bottom:20px;">Zypher hesabınızla giriş yapın ve Kurucu Pelerini kazanın.</p>
+            <div id="zypher-auth-form" style="display:flex;flex-direction:column;gap:10px;">
+                <input type="text" id="zypher-username-input" placeholder="Zypher Kullanıcı Adı" style="padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(0,0,0,0.5);color:white;font-size:14px;outline:none;">
+                <input type="password" id="zypher-password" placeholder="Şifre" style="padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:rgba(0,0,0,0.5);color:white;font-size:14px;outline:none;">
+                <button id="zypher-login-btn" style="background:var(--accent);color:white;border:none;padding:12px;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer;">Ağa Bağlan</button>
+                <p id="zypher-auth-msg" style="font-size:13px;text-align:center;color:var(--text-muted);"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skinview3D Library (CDN) -->
+    <script src="https://unpkg.com/skinview3d@3.0.0/bundles/skinview3d.bundle.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>
