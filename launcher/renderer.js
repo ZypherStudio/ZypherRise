@@ -373,51 +373,53 @@ window.addEventListener('click', (e) => { if(e.target === zypherModal) zypherMod
 
 // Zypher Network Login
 let zypherTokenData = null;
-zypherLoginBtn.addEventListener('click', async () => {
-    zypherLoginBtn.textContent = 'Bağlanıyor...';
-    const zypherUsernameField = document.getElementById('zypher-username-input');
-    const loginUsername = zypherUsernameField ? zypherUsernameField.value.trim() : usernameInput.value.trim();
+    // LOCAL AUTH SYSTEM (Removing MongoDB dependency)
     try {
-        const res = await fetch(`${API_BASE}/api/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: loginUsername, password: zypherPassword.value })
-        });
-        const data = await res.json();
-        if(data.success) {
-            zypherTokenData = data.user;
-            usernameInput.value = data.user.username;
-            zypherAuthMsg.textContent = "Bağlantı Başarılı! ⭐";
-            zypherAuthMsg.style.color = "#10b981";
-            
-            // Show Status
-            authStatusContainer.style.display = 'flex';
-            zypherConnectBtn.style.display = 'none';
-            
-            // Rotate character to show back
-            if(skinViewer) {
-                skinViewer.camera.position.set(-20, 10, -35); // Look from back
-                setTimeout(() => {
-                    skinViewer.camera.position.set(20, 10, 35); // Reset after 3 seconds
-                }, 3000);
-            }
-
-            // Update button to show connected state
-            zypherConnectBtn.innerHTML = `<i class="fa-solid fa-check"></i> ${data.user.username} (Bağlandı)`;
-            zypherConnectBtn.style.background = '#10b981';
-            // Close modal after short delay
-            setTimeout(() => { zypherModal.style.display = 'none'; }, 1200);
-            // Force Zypher Cape
-            zypherCapeCheck.checked = true;
-            zypherCapeCheck.disabled = true;
-            if(skinViewer) skinViewer.loadCape("https://crafatar.com/capes/853c80ef3c3749fdaa49938b674adae6");
-        } else {
-            zypherAuthMsg.textContent = data.message;
-            zypherAuthMsg.style.color = "#ef4444";
+        let localUsers = JSON.parse(localStorage.getItem('zypher_users_db') || '[]');
+        
+        // Find user locally or auto-create if it's the first time
+        let user = localUsers.find(u => u.username === loginUsername);
+        
+        if (!user) {
+            // If user doesn't exist, create a guest-style account instantly
+            user = { username: loginUsername, isFounder: true, createdAt: new Date().toISOString() };
+            localUsers.push(user);
+            localStorage.setItem('zypher_users_db', JSON.stringify(localUsers));
         }
+
+        // Login Success
+        zypherTokenData = user;
+        usernameInput.value = user.username;
+        zypherAuthMsg.textContent = "Bağlantı Başarılı! ⭐";
+        zypherAuthMsg.style.color = "#10b981";
+        
+        // Show Status
+        authStatusContainer.style.display = 'flex';
+        zypherConnectBtn.style.display = 'none';
+        
+        // Rotate character to show back
+        if(skinViewer) {
+            skinViewer.camera.position.set(-20, 10, -35);
+            setTimeout(() => {
+                skinViewer.camera.position.set(20, 10, 35);
+            }, 3000);
+        }
+
+        // Update button
+        zypherConnectBtn.innerHTML = `<i class="fa-solid fa-check"></i> ${user.username} (Bağlandı)`;
+        zypherConnectBtn.style.background = '#10b981';
+        
+        setTimeout(() => { zypherModal.style.display = 'none'; }, 1200);
+        
+        // Force Zypher Cape
+        zypherCapeCheck.checked = true;
+        zypherCapeCheck.disabled = true;
+        if(skinViewer) skinViewer.loadCape("https://crafatar.com/capes/853c80ef3c3749fdaa49938b674adae6");
+
     } catch(err) {
-        zypherAuthMsg.textContent = 'Sunucuya ulaşılamıyor. node server.js çalışıyor mu?';
+        zypherAuthMsg.textContent = 'Yerel oturum açılamadı!';
         zypherAuthMsg.style.color = "#ef4444";
+    }
     }
     zypherLoginBtn.textContent = 'Ağa Bağlan';
 });
