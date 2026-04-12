@@ -31,17 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userAgent.indexOf("win") !== -1) {
         osName = "Windows";
         btnText = "Windows İçin İndir (.exe)";
-        if(heroBtn) heroBtn.href = "downloads/ZypherRise_Setup.exe";
+        if(heroBtn) heroBtn.href = "https://github.com/ZypherStudio/ZypherRise/releases/latest/download/ZypherRise.Setup.1.1.0.exe";
         highlightCard(0); // Win is 0
     } else if (userAgent.indexOf("mac") !== -1 || userAgent.indexOf("os x") !== -1) {
         osName = "macOS";
         btnText = "Mac İçin İndir (.dmg)";
-        if(heroBtn) heroBtn.href = "downloads/ZypherRise.dmg";
+        if(heroBtn) heroBtn.href = "https://github.com/ZypherStudio/ZypherRise/releases/latest/download/ZypherRise-1.1.0-arm64.dmg";
         highlightCard(1); // Mac is 1
     } else if (userAgent.indexOf("linux") !== -1) {
         osName = "Linux";
         btnText = "Linux İçin İndir (.AppImage)";
-        if(heroBtn) heroBtn.href = "downloads/ZypherRise.AppImage";
+        if(heroBtn) heroBtn.href = "https://github.com/ZypherStudio/ZypherRise/releases/latest";
         highlightCard(2); // Linux is 2
     }
 
