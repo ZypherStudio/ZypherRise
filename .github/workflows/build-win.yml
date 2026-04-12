@@ -2,13 +2,15 @@ name: Compile Windows Executable
 
 on:
   push:
-    paths:
-      - 'launcher/**'
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build-win:
     runs-on: windows-latest
+    permissions:
+      contents: write
     defaults:
       run:
         working-directory: launcher
