@@ -1,0 +1,8 @@
+{
+  "name": "zypherrise-web",
+  "version": "1.0.0",
+  "description": "ZypherRise Web & API",
+  "dependencies": {
+    "mongodb": "^6.21.0"
+  }
+}
