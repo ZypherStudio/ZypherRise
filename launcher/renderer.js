@@ -196,7 +196,7 @@ usernameInput.addEventListener('input', () => {
 });
 
 // --- V5 SMART RAM & I18N ---
-const API_BASE = "http://localhost:3000";
+// Duplicate API_BASE removed for production stability
 const TRANSLATIONS = {
     "en": {
         "Oyna": "Play",
