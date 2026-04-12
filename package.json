@@ -2,9 +2,6 @@
   "name": "zypherrise-web",
   "version": "1.0.0",
   "description": "ZypherRise Web & API",
-  "scripts": {
-    "build": "echo 'Building Web...'"
-  },
   "dependencies": {
     "mongodb": "^6.21.0"
   }
