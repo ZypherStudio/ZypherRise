@@ -8,6 +8,7 @@ const usernameInput = document.getElementById('username-input');
 const authSelect = document.getElementById('auth-select');
 const msLoginBtn = document.getElementById('ms-login-btn');
 const versionSelect = document.getElementById('version-select'); // Used for quick launch
+const engineSelect = document.getElementById('engine-select'); // NEW: Vanilla/Forge/Fabric
 const playerAvatar = document.getElementById('player-avatar');
 const progressContainer = document.getElementById('progress-container');
 const progressBar = document.getElementById('progress-bar');
@@ -268,6 +269,7 @@ function loadSettings() {
     fpsBoostCheck.checked = localStorage.getItem('zr_fps_boost') === 'true';
     autoJoinCheck.checked = localStorage.getItem('zr_auto_join') === 'true';
     zypherCapeCheck.checked = localStorage.getItem('zr_cape') === 'true';
+    engineSelect.value = localStorage.getItem('zr_engine') || 'vanilla';
     
     const savedLang = localStorage.getItem('zr_lang') || 'tr';
     langSelect.value = savedLang;
@@ -307,6 +309,7 @@ saveSettingsBtn.addEventListener('click', () => {
     localStorage.setItem('zr_fps_boost', fpsBoostCheck.checked);
     localStorage.setItem('zr_auto_join', autoJoinCheck.checked);
     localStorage.setItem('zr_cape', zypherCapeCheck.checked);
+    localStorage.setItem('zr_engine', engineSelect.value);
     
     const prevLang = localStorage.getItem('zr_lang') || 'tr';
     localStorage.setItem('zr_lang', langSelect.value);
@@ -606,8 +609,10 @@ playBtn.addEventListener('click', async () => {
     }
 
     const version = versionSelect.value;
+    const engine = engineSelect.value;
     localStorage.setItem('zr_username', username);
     localStorage.setItem('zr_version', version);
+    localStorage.setItem('zr_engine', engine);
 
     playBtn.disabled = true;
     playBtn.textContent = 'BAŞLATILIYOR...';
@@ -621,7 +626,8 @@ playBtn.addEventListener('click', async () => {
         javaPath: javaPathInput.value.trim(),
         fpsBoost: fpsBoostCheck.checked,
         autoJoin: autoJoinCheck.checked,
-        authProfile: finalAuth
+        authProfile: finalAuth,
+        engine: engine // Pass to main.js
     });
 
     if (!result.success) {
